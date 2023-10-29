@@ -80,3 +80,51 @@ function mahasiswa5(nama, energi) {
 
 let asoy = mahasiswa5("Mila", 10);
 let geboy = mahasiswa5("doi", 25);
+
+// 5. Prototype
+// Parent default dari sebuah funtion dalam javascript
+function Barudak(nama, tenaga) {
+  // let this = Object.create(Barudak.prototype);
+  this.nama = nama;
+  this.tenaga = tenaga;
+}
+
+Barudak.prototype.makan = function (porsi) {
+  this.tenaga += porsi;
+  // console.log(`hoi ${this.nama}, selamat makan`);
+  return `Hai ${this.nama}, selamat makan!`;
+};
+
+Barudak.prototype.main = function (jam) {
+  this.tenaga -= jam;
+  return `halo ${this.nama}, selamat bermain!`;
+};
+
+Barudak.prototype.tidur = function (jam) {
+  this.tenaga += jam * 2;
+  return `halo ${this.nama}, selamat tidur!`;
+};
+
+let ucul = new Barudak("ucul", 15);
+
+// 6. Versi class
+class molen {
+  constructor(nama, tenaga) {
+    this.nama = nama;
+    this.tenaga = tenaga;
+  }
+  makan(porsi) {
+    this.tenaga += porsi;
+    return `Halo ${this.nama}, selamat makan!`;
+  }
+  main(jam) {
+    this.tenaga -= jam;
+    return `halo ${this.nama}, selamat bermain!`;
+  }
+
+  tidur(jam) {
+    this.tenaga += jam * 2;
+    return `halo ${this.nama}, selamat tidur!`;
+  }
+}
+let brody = new molen("brody", 23);
