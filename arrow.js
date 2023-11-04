@@ -33,3 +33,8 @@ let countHuruf = barudak5.map((nama) => ({
 }));
 // console.log(countHuruf);
 console.table(countHuruf);
+
+// arrow function yg lebih ringkas
+let countHuruf2 = barudak5.map((nama) => ({ nama, jmlHuruf: barudak5.length }));
+// console.log(countHuruf);
+console.table(countHuruf2);
