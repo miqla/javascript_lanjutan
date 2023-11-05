@@ -83,3 +83,43 @@ ${cetakMataKuliah(mahasiswa.mataKuliah)}
 </div>`;
 
 document.body.innerHTML = elem;
+
+// 5. Tagged Templates
+const nama = "joni";
+const umur = 20;
+
+// ...nama_value untuk menangkap semua expression yg ada
+function coba(strings, ...values) {
+  // let hasil = "";
+  // strings.forEach((element, index) => {
+  //   hasil += `${element}${values[index] || ""}`;
+  // });
+  // return hasil;
+
+  // cara 2, pake reduce
+  return strings.reduce(
+    (hasil, element, i) => `${hasil}${element}${values[i] || ""}`,
+    ""
+  );
+  // setting nilai awal adalah string kosong
+}
+
+const str = coba`Halo nama saya ${nama}, umur ${umur} tahun.`;
+console.log(str);
+
+// contoh lain
+const nama2 = "joni";
+const umur2 = 20;
+const email = "joni@gmail.com";
+
+function coba(strings, ...values) {
+  // parameter reduce boleh lebih dari 2 (opsional)
+  return strings.reduce(
+    (hasil, element, i) =>
+      `${hasil}${element}<span class="hl">${values[i] || ""}</span>`,
+    ""
+  );
+}
+
+const str2 = coba`Halo nama saya ${nama2}, umur ${umur2} tahun. email saya ${email}`;
+document.body.innerHTML = str2;
