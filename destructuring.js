@@ -97,3 +97,45 @@ function destruksi({ nama }) {
 
 console.log(getIDmhs(mhs));
 console.log(destruksi(mhs));
+
+// --------------//-------------------------//------------------------------------//-----
+// 1. Destructuring Function return value
+function penjumlahanPerkalian(a, b) {
+  return [a + b, a * b];
+}
+console.log(penjumlahanPerkalian(4, 5));
+console.log(penjumlahanPerkalian(3, 4)[0]);
+const perkalian = penjumlahanPerkalian(3, 4)[1];
+console.log(perkalian);
+
+const [tambah2, kali2] = penjumlahanPerkalian(2, 3);
+console.log(tambah2);
+console.log(kali2);
+
+// biar urutan array tidak berpengaruh, gunakan objek restructuring pada return value nya
+function kalkulasi(a, b) {
+  return {
+    tambah: a + b,
+    kurang: a - b,
+    kali: a * b,
+    bagi: a / b,
+  };
+}
+const { kali, tambah, bagi, kurang } = kalkulasi(2, 3);
+console.log(kurang); //hasil = -1, bukan 2/3
+
+// 2. Destructuring function arguments
+const mhs3 = {
+  nama: "aqua",
+  umur: 26,
+  nilai: {
+    tugas: 80,
+    uts: 78,
+    uas: 75,
+  },
+};
+// destructuring bersarang
+function cetakMhs3({ nama, umur, nilai: { tugas, uts, uas } }) {
+  return `Halo nama saya ${nama}, umur saya ${umur} tahun. Nilai UAS saya ${uas}`;
+}
+console.log(cetakMhs3(mhs3));
