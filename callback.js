@@ -15,15 +15,15 @@
 const mhs = [
   {
     nama: "alek",
-    umur: "40",
+    umur: 40,
   },
   {
     nama: "mila",
-    umur: "20",
+    umur: 20,
   },
   {
     nama: "beliau",
-    umur: "doi",
+    umur: 23,
   },
 ];
 console.log("mulai");
