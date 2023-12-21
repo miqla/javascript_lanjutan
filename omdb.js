@@ -1,33 +1,44 @@
-$.ajax({
-  url: "http://www.omdbapi.com/?apikey=38c2cf77&s=naruto",
-  success: (result) => {
-    // biar gadda search nya langsung masuk ke array
-    const movies = result.Search;
-    console.log(movies);
-    let cards = "";
-    movies.forEach((m) => {
-      cards += showCard(m);
-      // JQuery carikan elemen dengan class..., lalu html nya sisipkan cards
-      $(".movie-container").html(cards);
+$(".input-value").on("keyup", function () {
+  playAjax();
+});
 
-      // Ketika tombol diklik
-      $(".tombol-detail").on("click", function () {
-        $.ajax({
-          url:
-            "http://www.omdbapi.com/?apikey=38c2cf77&i=" +
-            $(this).data("imdbid"),
-          success: (m) => {
-            const movieDetail = showMovieDetail(m);
-            $(".modal-body").html(movieDetail);
-            console.log(m);
-          },
-          error: (e) => console.log(e.responseText),
+$(".tombol-cari").on("click", function () {
+  return playAjax();
+});
+
+function playAjax() {
+  $.ajax({
+    // Jquery carikan sy elemen dengan kelas input value, lalu ambil semua value nya
+    url: "http://www.omdbapi.com/?apikey=38c2cf77&s=" + $(".input-value").val(),
+    success: (result) => {
+      // biar gadda search nya langsung masuk ke array
+      const movies = result.Search;
+      console.log(movies);
+      let cards = "";
+      movies.forEach((m) => {
+        cards += showCard(m);
+        // JQuery carikan elemen dengan class..., lalu html nya sisipkan cards
+        $(".movie-container").html(cards);
+
+        // Ketika tombol diklik
+        $(".tombol-detail").on("click", function () {
+          $.ajax({
+            url:
+              "http://www.omdbapi.com/?apikey=38c2cf77&i=" +
+              $(this).data("imdbid"),
+            success: (m) => {
+              const movieDetail = showMovieDetail(m);
+              $(".modal-body").html(movieDetail);
+              console.log(m);
+            },
+            error: (e) => console.log(e.responseText),
+          });
         });
       });
-    });
-  },
-  error: (e) => console.log(e.responseText),
-});
+    },
+    error: (e) => console.log(e.responseText),
+  });
+}
 
 function showCard(m) {
   return `<div class="col-md-4 my-3">

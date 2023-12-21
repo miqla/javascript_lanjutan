@@ -18,23 +18,34 @@
           <h1 class="text-center">Open Movie Database</h1>
         </div>
       </div>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control input-value"
+              placeholder="Search movie.."
+            />
+            <button
+              class="btn btn-primary tombol-cari"
+              type="button"
+              id="button-addon2"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="row movie-container"></div>
     </div>
 
     <!-- Awal modal -->
-    <!-- Button trigger modal -->
-    <div
-      class="modal fade"
-      id="movieDetailModal"
-      tabindex="-1"
-      aria-labelledby="movieDetailModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="movieDetailModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="movieDetailModalLabel">
-              Modal title
+              Detail Movie
             </h1>
             <button
               type="button"
@@ -56,7 +67,6 @@
         </div>
       </div>
     </div>
-    s
     <!-- Akhir modal -->
 
     <script
