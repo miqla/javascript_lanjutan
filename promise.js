@@ -49,25 +49,66 @@
 //   .catch((respon) => console.log("Not OK : " + respon));
 
 // contoh 2
-let ditepati = false;
-const janji2 = new Promise((resolve, reject) => {
-  if (ditepati) {
-    setTimeout(() => {
-      resolve("Janji telah ditepati setelah 2 detik");
-    }, 2000);
-  } else {
-    setTimeout(() => {
-      reject("Janji tidak ditepati setelah 2 detik");
-    }, 2000);
-  }
+// let ditepati = false;
+// const janji2 = new Promise((resolve, reject) => {
+//   if (ditepati) {
+//     setTimeout(() => {
+//       resolve("Janji telah ditepati setelah 2 detik");
+//     }, 2000);
+//   } else {
+//     setTimeout(() => {
+//       reject("Janji tidak ditepati setelah 2 detik");
+//     }, 2000);
+//   }
+// });
+
+// console.log("mulai");
+// // kalau mau lihat pendingnya dijalankan, pake cara dibawah
+// // console.log(janji2.then((hasil) => console.log(hasil)));
+// janji2
+//   .finally(() => console.log("Janji sudah dijalankan"))
+//   // finally akan dijalankan right before hasilnya keluar, biasanya buat nyelipin animasi loading
+//   .then((respon) => console.log("OK: " + respon))
+//   .catch((respon) => console.log("Not OK : " + respon));
+// console.log("selesai");
+
+// Promise.all()=>untuk menjalankan banyak promise sekaligus
+const film = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([
+      {
+        judul: "avenger",
+        artis: "mila, laila",
+        kantor: "tokyo",
+      },
+    ]);
+  }, 1000);
 });
 
-console.log("mulai");
-// kalau mau lihat pendingnya dijalankan, pake cara dibawah
-// console.log(janji2.then((hasil) => console.log(hasil)));
-janji2
-  .finally(() => console.log("Janji sudah dijalankan"))
-  // finally akan dijalankan right before hasilnya keluar, biasanya buat nyelipin animasi loading
-  .then((respon) => console.log("OK: " + respon))
-  .catch((respon) => console.log("Not OK : " + respon));
-console.log("selesai");
+const cuaca = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve([
+      {
+        kota: "jekardah",
+        temp: 27,
+        kondisi: "baik",
+      },
+    ]);
+  }, 500);
+});
+
+// contoh jika ada 2 atau lebih promise tapi tidak menggunakan .all()  -> hasil1
+// film.then((respon) => console.log(respon));
+// cuaca.then((respon) => console.log(respon));
+
+// contoh menggunakan promise.all()
+Promise.all([film, cuaca])
+  // hasil dibawah akan menjadi array didalam array
+  // .then((respon) => console.log(respon));
+
+  // menggunakan spread operator biar array nya kepisah, nanti hasilnya sama kayak hasil1
+  .then((respon) => {
+    const [film, cuaca] = respon;
+    console.log(film);
+    console.log(cuaca);
+  });
